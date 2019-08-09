@@ -1,0 +1,2 @@
+# PySticky
+Lightweight python notepad.
