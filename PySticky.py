@@ -5,11 +5,11 @@ from tkinter.scrolledtext import ScrolledText
 
 
 backgroundColorPicked="bisque3"
-def window(FlengthUp, FlengthWide, BlengthUp, BlengthWide, frontColor, backColor, saveToggle, configToggle, textInsert):
+def window(FlengthUp, FlengthWide, BlengthUp, BlengthWide, frontColor, backColor, saveToggle, configToggle, textInsert, submitToggle):
     print('window() successfully started')
     root=tk.Tk()
     root.title("PySticky")
-    root.geometry("500x500")
+    root.geometry("500x525")
     root.configure(background=backgroundColorPicked)
 
     frame = tk.Frame(root, width=FlengthWide, height=FlengthUp, background="bisque")
@@ -29,6 +29,12 @@ def window(FlengthUp, FlengthWide, BlengthUp, BlengthWide, frontColor, backColor
         fileSave.close()
         showinfo(title="Alert!", message="File saved!")
 
+    def submitFunc():
+        textCarry = textbox.get("1.0",'end-1c')
+        global outputSubmitted
+        outputSubmitted = textCarry
+        print(textCarry, outputSubmitted)
+
     def configBox():
         def saveSettings():
             global backgroundColorPicked
@@ -37,7 +43,7 @@ def window(FlengthUp, FlengthWide, BlengthUp, BlengthWide, frontColor, backColor
             #carry any written text
             textCarry = textbox.get("1.0",'end-1c')
             backColorPicked = backColorPickedBox.get()
-            window(450, 450, 50, 50, frontColorPicked, backColorPicked, True, True, textCarry)
+            window(450, 450, 50, 50, frontColorPicked, backColorPicked, saveToggle, configToggle, textCarry, submitToggle)
         
         config=tk.Tk()
         config.title("Config")
@@ -77,6 +83,13 @@ def window(FlengthUp, FlengthWide, BlengthUp, BlengthWide, frontColor, backColor
     if configToggle == True:
         configButton = tk.Button(root, text="Config", fill=None, height = 1, width = 25, bg="cyan", command=configBox)
         configButton.pack()
+        
+    if submitToggle == True:
+        submitButton = tk.Button(root, text="Submit", fill=None, height = 1, width = 25, bg="cyan", command=submitFunc)
+        submitButton.pack()
 
     root.mainloop()
     print('window() successfully completed')
+
+#Demo arguments
+#window(450, 450, 50, 50, "Black", "White", True, True, "", True)
