@@ -10,4 +10,4 @@ Call the function window like the following:
 window(FlengthUp, FlengthWide, BlengthUp, BlengthWide, frontColor, backColor)
 
 Example with filled in arguments:
-window(450, 450, 50, 50, "Black", "White", True, True, "")
+window(450, 450, 50, 50, "Black", "White", True, True, "", True)
